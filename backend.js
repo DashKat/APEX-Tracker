@@ -18,6 +18,19 @@ var coordinates, lat, long, comma, pLat, pLong, time1, time2, pCoordinates, time
 
 const messaging = firebase.messaging();
 
+messaging.requestPermission()
+.then(function () {
+    console.log("Notification permission granted.");
+
+    return messaging.getToken();
+})
+.then(function() {
+    console.log(token);
+})
+.catch(function (err) {
+   console.log("Unable to get permission to notify.", err);
+});
+
 messaging.usePublicVapidKey("BDziuOWEeIf1xLHtjQ5A1JPiN2wESbf5qZEgGWXBlfLAFWBbQ-YR8Ow1bTNeNhSaS6iDtGownVpUzNJMfhCPX4k");
 
 messaging.getToken()
